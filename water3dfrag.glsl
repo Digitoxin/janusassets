@@ -145,9 +145,9 @@ float snoise(vec3 v)
 void main(void) {
 	float transparency = 0.8;
 	
-	vec3 bot = texture2D(iChannel0, gl_TexCoord[0].st),
-		ref = texture2D(iChannel1, gl_TexCoord[0].st);
-	vec3 col = mix(bot, ref, transparency)
+	vec3 bot = vec3(texture2D(iChannel0, gl_TexCoord[0].st));
+	vec3 ref = vec3(texture2D(iChannel1, gl_TexCoord[0].st));
+	vec3 col = mix(bot, ref, transparency);
 
 	gl_FragColor = vec4(col, 1.0);
 }
