@@ -125,6 +125,14 @@ float snoise(vec3 v)
                                 dot(p2,x2), dot(p3,x3) ) );
 }
 
-/*  */
+/* -------------------------------------------------- */
 
+void main(void) {
+	float transparency = 0.8;
+	
+	vec3 bot = texture2D(iTexture0),
+		ref = texture2D(iTexture1);
+	vec3 col = mix(bot, ref, transparency)
 
+	gl_FragColor = vec4(col, 1.0);
+}

@@ -1,3 +1,30 @@
+//#version 110
+
+uniform mat4 iModelMatrix;
+uniform mat4 iNormalMatrix;  //Note: this is transpose(inverse(iModelMatrix)) 
+uniform mat4 iViewMatrix;
+uniform mat4 iViewMatrixInverse;
+uniform float iGlobalTime;
+uniform int iUseTexture0;
+uniform int iUseTexture1;
+uniform int iUseTexture2;
+uniform int iUseTexture3;
+uniform sampler2D iTexture0;
+uniform sampler2D iTexture1;
+uniform sampler2D iTexture2;
+uniform sampler2D iTexture3;
+uniform int iUseClipPlane;
+uniform int iUseLighting;
+uniform int iIllum;
+uniform vec4 iClipPlane;                                       
+
+varying vec3 iPosition;
+varying vec3 iPositionWorld;
+varying vec3 iPositionCamera;
+varying vec3 iNormal;
+varying vec3 iNormalWorld;
+varying vec3 iNormalCamera;
+
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex 
 //               noise functions.
@@ -127,7 +154,24 @@ float snoise(vec3 v)
 
 /* ----------------------------------------- */ 
 
+
+
 void main(void) {
-  vec3 normCol = (iNormal + vec3(1,1,1)) * 0.5;
-  gl_FragColor = vec4(normCol, 1.0);
+
+	iPosition = gl_Vertex.xyz;
+	iPosition.y += snoise(vec3(glVertex.x, glVertex.z, iGlobalTime));
+
+	iNormal = gl_Normal;
+	iPositionWorld = (iModelMatrix * gl_Vertex).xyz;  
+	iPositionCamera = (gl_ModelViewMatrix * gl_Vertex).xyz;   
+	iNormalWorld = (iNormalMatrix * vec4(gl_Normal, 0.0)).xyz;  
+	iNormalCamera = gl_NormalMatrix * gl_Normal;
+	gl_Position = gl_ModelViewProjectionMatrix * (gl_Vertex + vec4(0, 0, sin(iGlobalTime + gl_Vertex.x * gl_Vertex.y) * 0.2, 0));
+	gl_FrontColor = gl_Color;
+	gl_TexCoord[0] = gl_MultiTexCoord0;
+	gl_TexCoord[1] = gl_MultiTexCoord1;
+	gl_TexCoord[2] = gl_MultiTexCoord2;
+	gl_TexCoord[3] = gl_MultiTexCoord3;
+
 }
+
