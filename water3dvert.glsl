@@ -27,13 +27,16 @@ varying vec3 iNormalCamera;
 
 void main(void) {
 
+  float amp = 0.3;
+  float len = 5.0;
+
   iPosition = gl_Vertex.xyz;
   iNormal = gl_Normal;
   iPositionWorld = (iModelMatrix * gl_Vertex).xyz;  
   iPositionCamera = (gl_ModelViewMatrix * gl_Vertex).xyz;   
   iNormalWorld = (iNormalMatrix * vec4(gl_Normal, 0.0)).xyz;  
   iNormalCamera = gl_NormalMatrix * gl_Normal;
-  gl_Position = gl_ModelViewProjectionMatrix * (gl_Vertex + vec4(0.0, sin(iGlobalTime + gl_Vertex.x * gl_Vertex.z) * 0.2, 0.0, 0.0));
+  gl_Position = gl_ModelViewProjectionMatrix * (gl_Vertex + vec4(0.0, sin(iGlobalTime + gl_Vertex.x * gl_Vertex.z * len) * amp, 0.0, 0.0));
   //gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
   gl_FrontColor = gl_Color;
   gl_TexCoord[0] = gl_MultiTexCoord0;
