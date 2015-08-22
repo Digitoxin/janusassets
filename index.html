@@ -16,9 +16,11 @@
     <Assets>
       <AssetShader id="3dwatershader" src="water3dfrag.glsl" vertex_src="water3dvert.glsl" />
       <AssetObject id="water_plane" src="plane1024.obj" tex0="sky.jpg" tex1="pebbles.jpg"  />
+      <AssetObject id="pebbles" src="plane1024.obj" tex="pebbles.jpg" />
     </Assets>
     <Room use_local_asset="room_plane" visible="false">
       <Object id="water_plane" pos="0 0 10" scale="30.0 30.0 30.0" shader_id="3dwatershader" />
+      <Object id="pebbles" pos="0 0 0" scale="30 30 30">
     </Room>
   </FireBoxRoom>
 -->
