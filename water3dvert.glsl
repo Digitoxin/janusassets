@@ -33,8 +33,8 @@ void main(void) {
   iPositionCamera = (gl_ModelViewMatrix * gl_Vertex).xyz;   
   iNormalWorld = (iNormalMatrix * vec4(gl_Normal, 0.0)).xyz;  
   iNormalCamera = gl_NormalMatrix * gl_Normal;
-  //gl_Position = gl_ModelViewProjectionMatrix * (gl_Vertex + vec4(0, sin(iGlobalTime + gl_Vertex.x * gl_Vertex.y) * 0.2, 0, 0));
-  gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+  gl_Position = gl_ModelViewProjectionMatrix * (gl_Vertex + vec4(0, sin(iGlobalTime + gl_Vertex.x * gl_Vertex.y) * 0.2, 0, 0));
+  //gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
   gl_FrontColor = gl_Color;
   gl_TexCoord[0] = gl_MultiTexCoord0;
   gl_TexCoord[1] = gl_MultiTexCoord1;

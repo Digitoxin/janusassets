@@ -20,7 +20,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	float time = 1.0;
     // uv should be the 0-1 uv of texture...
 	vec2 uv = gl_TexCoord[0].st;
-    
 
 	vec2 p = mod(uv*TAU*30.0, TAU)-250.0;
 
@@ -45,7 +44,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 }
 
 void main( void ){
-
 
 vec4 color = vec4(0.0,0.0,0.0,1.0);
 mainImage( color, gl_TexCoord[0].st );
