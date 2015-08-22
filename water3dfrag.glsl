@@ -16,7 +16,8 @@ uniform sampler2D iChannel3;
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) 
 {
-	float time = iGlobalTime * .5+10.0;
+	//float time = iGlobalTime * .5+10.0;
+	float time = 1.0;
     // uv should be the 0-1 uv of texture...
 	vec2 uv = gl_TexCoord[0].st;
     
